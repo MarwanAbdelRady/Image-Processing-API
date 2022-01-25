@@ -1,7 +1,7 @@
 # Image Processing API
 
 ## Project Description
-The Image Processing application runs a node.js server and offers a REST endpoint to illustrate sclaed images.
+The Image Processing application runs a node.js server and offers a REST endpoint to illustrate scaled images.
 
 ## URL Format Example
 /api/images?imagename=fjord&width=300&height=300
