@@ -33,6 +33,9 @@ imageRouter.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
     else {
         const img = yield (0, middleware_1.default)(imagename, parseInt(width), parseInt(height));
+        if (!img) {
+            res.status(400).send("This imagename does not exist");
+        }
         res.sendFile(path_1.default.join(app_1.rootPath, img));
     }
 }));

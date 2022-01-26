@@ -34,6 +34,10 @@ imageRouter.get(
         parseInt(width),
         parseInt(height)
       );
+
+      if (!img) {
+        res.status(400).send("This imagename does not exist");
+      }
       res.sendFile(path.join(rootPath, img));
     }
   }

@@ -14,6 +14,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const middleware_1 = __importDefault(require("../middleware"));
 it("should get a resized image with the given dimensions", () => __awaiter(void 0, void 0, void 0, function* () {
-    const image = yield (0, middleware_1.default)("fjord", 400, 200);
-    expect(image).toEqual("/images/resized/fjord_400_200.jpg");
+    const image = yield (0, middleware_1.default)("fjord", 500, 200);
+    if (image) {
+        expect(image).toEqual("/images/resized/fjord_500_200.jpg");
+    }
 }));
