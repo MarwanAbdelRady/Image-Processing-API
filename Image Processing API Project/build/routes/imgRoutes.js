@@ -15,7 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const path_1 = __importDefault(require("path"));
 const app_1 = require("../app");
-const middleware_1 = require("../middleware");
+const middleware_1 = __importDefault(require("../middleware"));
+// Creating Image Router
 const imageRouter = express_1.default.Router();
 imageRouter.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // Request query
@@ -31,7 +32,7 @@ imageRouter.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* (
         // If all 2 parameters are given the image proccessing function will be called & the resized image will be sent.
     }
     else {
-        const img = yield (0, middleware_1.imageScaling)(imagename, parseInt(width), parseInt(height));
+        const img = yield (0, middleware_1.default)(imagename, parseInt(width), parseInt(height));
         res.sendFile(path_1.default.join(app_1.rootPath, img));
     }
 }));

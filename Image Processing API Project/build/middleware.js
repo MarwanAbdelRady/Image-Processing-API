@@ -12,16 +12,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.imageScaling = void 0;
 const fs_1 = __importDefault(require("fs"));
 const sharp_1 = __importDefault(require("sharp"));
 const app_1 = require("./app");
 let imagePath = "";
+// Image Processing function
 const imageScaling = (imagename, width, heigth) => __awaiter(void 0, void 0, void 0, function* () {
     const orgImagePath = `${app_1.rootPath}/images/${imagename}.jpg`;
     const resizedImagePath = `${app_1.rootPath}/images/resized/${imagename}_${width}_${heigth}.jpg`;
+    // If image with required dimension already exists in the resized folder then its path will be used.
     if (fs_1.default.existsSync(resizedImagePath)) {
         imagePath = `/images/resized/${imagename}_${width}_${heigth}.jpg`;
+        // If image with required dimension does not exist the image processing function will be called with the given dimensions and the new image path will be used.
     }
     else if (fs_1.default.existsSync(orgImagePath)) {
         yield (0, sharp_1.default)(orgImagePath)
@@ -31,6 +33,7 @@ const imageScaling = (imagename, width, heigth) => __awaiter(void 0, void 0, voi
             imagePath = `/images/resized/${imagename}_${width}_${heigth}.jpg`;
         });
     }
+    // Returning the image path
     return imagePath;
 });
-exports.imageScaling = imageScaling;
+exports.default = imageScaling;
